@@ -39,6 +39,18 @@ async function load() {
 onLangChange(render);
 load();
 
+// Shop gallery: click a photo to see it full size (native <dialog>: Esc and backdrop click close it).
+document.querySelectorAll('.tile').forEach((tile) => tile.addEventListener('click', () => {
+  const small = tile.querySelector('img');
+  const dlg = el('dialog', { class: 'lightbox', 'aria-label': small.alt },
+    el('img', { src: tile.dataset.full, alt: small.alt, width: tile.dataset.w, height: tile.dataset.h }),
+    el('button', { class: 'btn btn--sm', type: 'button', text: t('lb.close'), onclick: () => dlg.close() }));
+  dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener('close', () => dlg.remove());
+  document.body.append(dlg);
+  dlg.showModal();
+}));
+
 // Click-to-load map: no third-party request or cookie until the visitor agrees.
 document.querySelectorAll('[data-map-load]').forEach((btn) => btn.addEventListener('click', () => {
   const wrap = btn.closest('.map');

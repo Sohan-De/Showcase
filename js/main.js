@@ -74,4 +74,18 @@ async function boot() {
   (window.requestIdleCallback || ((fn) => setTimeout(fn, 200)))(loadSettings);
 }
 
+/** Hidden shortcut: press "a" five times in a row (not while typing) to open the admin area. */
+function initAdminShortcut() {
+  let count = 0, timer;
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey || e.repeat) return;
+    if (e.target.closest?.('input, textarea, select, [contenteditable]')) return;
+    if (e.key.toLowerCase() !== 'a') { count = 0; return; }
+    clearTimeout(timer);
+    timer = setTimeout(() => { count = 0; }, 1500); // presses must be quick
+    if (++count >= 5) { count = 0; location.href = new URL('../admin/index.html', import.meta.url).href; }
+  });
+}
+initAdminShortcut();
+
 export const ready = boot();

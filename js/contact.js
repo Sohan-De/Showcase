@@ -17,6 +17,22 @@ const params = new URLSearchParams(location.search);
 if (params.get('model')) modelInput.value = params.get('model').slice(0, 100);
 if (params.get('repair')) form.elements.message.value = `${params.get('repair').slice(0, 80)} — `;
 
+// Problem chips: put the chosen problem at the start of the message (and swap it if they pick another).
+const msgField = form.elements.message;
+if (params.get('repair')) msgField.dataset.prefix = `${params.get('repair').slice(0, 80)} — `;
+const picks = [...document.querySelectorAll('.pick')];
+picks.forEach((chip) => chip.addEventListener('click', () => {
+  const wasOn = chip.getAttribute('aria-pressed') === 'true';
+  const old = msgField.dataset.prefix || '';
+  if (old && msgField.value.startsWith(old)) msgField.value = msgField.value.slice(old.length);
+  picks.forEach((c) => c.setAttribute('aria-pressed', 'false'));
+  if (wasOn) { msgField.dataset.prefix = ''; return; }
+  chip.setAttribute('aria-pressed', 'true');
+  msgField.dataset.prefix = `${chip.textContent.trim()} — `;
+  msgField.value = msgField.dataset.prefix + msgField.value;
+}));
+form.addEventListener('reset', () => { msgField.dataset.prefix = ''; picks.forEach((c) => c.setAttribute('aria-pressed', 'false')); });
+
 function refreshWa() { wa.href = waUrl(waText(modelInput.value)); }
 wa.setAttribute('data-wa-custom', '');
 modelInput.addEventListener('input', refreshWa);

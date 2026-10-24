@@ -2,7 +2,7 @@
 
 Site 100 % statique (HTML / CSS / JavaScript natif en modules ES). Aucune compilation. Données : Supabase (PostgreSQL + Auth + RLS).
 
-**Direction artistique « Voltage »** : fond quasi noir, un seul accent vert-citron électrique, cartes en verre dépoli, titres larges (Unbounded) et animations douces qui respectent `prefers-reduced-motion`. Thème clair automatique via `prefers-color-scheme`.
+**Direction artistique « Voltage »** : fond quasi noir, un seul accent rouge néon, cartes en verre dépoli, titres larges (Unbounded) et animations douces qui respectent `prefers-reduced-motion`. Thème clair automatique via `prefers-color-scheme`.
 
 ## Structure
 

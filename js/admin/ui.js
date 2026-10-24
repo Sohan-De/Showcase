@@ -33,13 +33,16 @@ export function toast(text, type = 'success', ms = 4200) {
 /** Confirmation dialog (promise<boolean>). Uses the native <dialog> element. */
 export function confirmDialog({ title, text, confirmLabel = 'Confirmer', danger = false }) {
   return new Promise((resolve) => {
+    let done = false;
+    // Resolve straight from the click (not only from the async 'close' event); Esc still counts as "no".
+    const finish = (ok) => { if (done) return; done = true; resolve(ok); dlg.close(); dlg.remove(); };
     const dlg = el('dialog', { class: 'dialog', 'aria-labelledby': 'dlg-title' },
       el('h2', { id: 'dlg-title', text: title }),
       el('p', { text }),
       el('div', { class: 'dialog__actions' },
-        el('button', { class: 'btn btn--lg', type: 'button', text: 'Annuler', onclick: () => dlg.close('no') }),
-        el('button', { class: `btn btn--lg ${danger ? 'btn--danger-solid' : 'btn--primary'}`, type: 'button', text: confirmLabel, onclick: () => dlg.close('yes') })));
-    dlg.addEventListener('close', () => { resolve(dlg.returnValue === 'yes'); dlg.remove(); });
+        el('button', { class: 'btn btn--lg', type: 'button', text: 'Annuler', onclick: () => finish(false) }),
+        el('button', { class: `btn btn--lg ${danger ? 'btn--danger-solid' : 'btn--primary'}`, type: 'button', text: confirmLabel, onclick: () => finish(true) })));
+    dlg.addEventListener('close', () => finish(false));
     document.body.append(dlg);
     dlg.showModal();
   });

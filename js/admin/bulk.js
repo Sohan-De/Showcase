@@ -2,13 +2,14 @@
 import { listBrands, listModels, listRepairTypes, fetchAll, db, upsertPrices, insertRow } from './adminApi.js';
 import { el, toast, confirmDialog, withBusy, field, slug } from './ui.js';
 import { toCSV, parseCSV, download } from './csv.js';
+import { imagesCard } from './images.js';
 
 export async function initTools(container) {
   container.replaceChildren(el('p', { class: 'muted', text: 'Chargement…' }));
   let brands, types;
   try { [brands, types] = await Promise.all([listBrands(), listRepairTypes()]); }
   catch (e) { console.error(e); container.replaceChildren(el('p', { class: 'msg msg--error', text: 'Erreur de chargement.' })); return; }
-  container.replaceChildren(bulkCard(brands, types), csvCard(brands, types));
+  container.replaceChildren(bulkCard(brands, types), csvCard(brands, types), imagesCard());
 }
 
 // ----------------------------------------------------------------- bulk

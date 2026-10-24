@@ -1,28 +1,28 @@
 /* =========================================================
    Prophone Béziers — design tokens, reset, typography
-   Direction "Voltage": near-black ink, one vivid volt-lime accent,
+   Direction "Voltage": near-black ink, one vivid neon-red accent,
    glass cards, wide display type, motion that respects user settings.
    ========================================================= */
 :root {
   color-scheme: dark light;
 
   /* Colour tokens (dark is the signature look) */
-  --bg: #07080c;
-  --bg-2: #0d0f16;
+  --bg: #0a0708;
+  --bg-2: #130b0d;
   --surface: rgba(255, 255, 255, 0.045);
   --surface-2: rgba(255, 255, 255, 0.08);
   --border: rgba(255, 255, 255, 0.11);
   --text: #f3f5fa;
   --muted: #a9aebf;
-  --accent: #c8ff2e;          /* fills */
-  --accent-ink: #0b0d05;      /* text on accent fills */
-  --accent-text: #c8ff2e;     /* accent used as text colour */
-  --accent-2: #7c5cff;        /* secondary glow */
+  --accent: #e8192c;          /* fills */
+  --accent-ink: #ffffff;      /* text on accent fills */
+  --accent-text: #ff5a64;     /* accent used as text colour */
+  --accent-2: #b3001b;        /* secondary glow */
   --ok: #4ade80;
   --warn: #fbbf24;
   --danger: #ff6b6b;
   --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.7);
-  --glow: 0 0 0 1px rgba(200, 255, 46, 0.35), 0 10px 40px -10px rgba(200, 255, 46, 0.45);
+  --glow: 0 0 0 1px rgba(232, 25, 44, 0.45), 0 10px 40px -10px rgba(232, 25, 44, 0.6);
 
   /* Type */
   --font-display: 'Unbounded', 'Segoe UI', system-ui, sans-serif;
@@ -47,20 +47,20 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --bg: #f5f6f1;
-    --bg-2: #ecede6;
+    --bg: #faf5f5;
+    --bg-2: #f1e8e8;
     --surface: rgba(255, 255, 255, 0.75);
     --surface-2: rgba(255, 255, 255, 0.95);
     --border: rgba(10, 12, 20, 0.12);
     --text: #0b0d12;
     --muted: #474c5b;
-    --accent-text: #3d6100;
-    --accent-2: #5b3df5;
+    --accent-text: #c4101f;
+    --accent-2: #ff4d5e;
     --ok: #15803d;
     --warn: #92600a;
     --danger: #b42318;
     --shadow: 0 20px 50px -25px rgba(20, 24, 40, 0.35);
-    --glow: 0 0 0 1px rgba(80, 120, 0, 0.35), 0 10px 30px -12px rgba(100, 150, 0, 0.5);
+    --glow: 0 0 0 1px rgba(196, 16, 31, 0.35), 0 10px 30px -12px rgba(196, 16, 31, 0.5);
   }
 }
 

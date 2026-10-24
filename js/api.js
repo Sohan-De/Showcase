@@ -9,12 +9,12 @@ async function run(query) {
 
 export async function getBrands() {
   const db = await getClient();
-  return run(db.from('brands').select('id,name,sort_order').order('sort_order').order('name'));
+  return run(db.from('brands').select('id,name,sort_order').eq('is_active', true).order('sort_order').order('name'));
 }
 
 export async function getModels() {
   const db = await getClient();
-  return run(db.from('models').select('id,brand_id,name,image,sort_order').order('sort_order').order('name'));
+  return run(db.from('models').select('id,brand_id,name,image,sort_order').eq('is_active', true).order('sort_order').order('name'));
 }
 
 /** All visible repairs for one model, joined with repair type labels. */
@@ -24,7 +24,9 @@ export async function getPricesForModel(modelId) {
     db
       .from('prices')
       .select('id,price,currency,est_time_minutes,updated_at,repair_types!inner(id,name_fr,name_en,icon,sort_order,is_active)')
-      .eq('model_id', modelId),
+      .eq('model_id', modelId)
+      .eq('is_available', true)
+      .eq('repair_types.is_active', true),
   );
   return rows.sort((a, b) => a.repair_types.sort_order - b.repair_types.sort_order);
 }
@@ -36,7 +38,9 @@ export async function getPricePreview() {
     db
       .from('prices')
       .select('price,repair_types!inner(id,name_fr,name_en,icon,sort_order)')
-      .not('price', 'is', null),
+      .not('price', 'is', null)
+      .eq('is_available', true)
+      .eq('repair_types.is_active', true),
   );
   const best = new Map();
   for (const r of rows) {

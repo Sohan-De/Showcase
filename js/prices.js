@@ -40,7 +40,8 @@ function renderModels() {
     el('button', {
       class: 'model-btn', type: 'button', 'aria-pressed': String(state.model?.id === m.id),
       onclick: () => selectModel(m),
-    }, el('small', { text: brandName(m.brand_id) }), el('strong', { text: m.name }))));
+    }, /^https:\/\//.test(m.image || '') ? el('img', { src: m.image, alt: '', loading: 'lazy', width: 56, height: 56 }) : null,
+      el('span', { class: 'model-btn__txt' }, el('small', { text: brandName(m.brand_id) }), el('strong', { text: m.name })))));
 }
 
 async function selectModel(model) {
