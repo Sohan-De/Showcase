@@ -2,7 +2,7 @@
 
 Site 100 % statique (HTML / CSS / JavaScript natif en modules ES). Aucune compilation. Données : Supabase (PostgreSQL + Auth + RLS).
 
-**Direction artistique « Voltage »** : fond quasi noir, un seul accent rouge néon, cartes en verre dépoli, titres larges (Unbounded) et animations douces qui respectent `prefers-reduced-motion`. Thème clair automatique via `prefers-color-scheme`.
+**Thème inspiré du modèle Smartfun** : fond crème, titres bleu marine, boutons orange, cartes arrondies. Polices Baloo 2 et Inter hébergées dans `assets/fonts` (aucune requête vers Google). Les couleurs se changent dans `:root` de `css/base.css`.
 
 ## Structure
 
@@ -75,4 +75,4 @@ Ouvrez http://localhost:3000 (site) et http://localhost:3000/admin/login.html (a
 - Écriture réservée aux comptes listés dans `admins` (RLS). Lecture publique limitée aux données actives. Les visiteurs peuvent seulement *insérer* dans `contact_messages`.
 - Anti-spam : champ piège (honeypot), délai minimum, 1 message/minute par navigateur, et limite serveur (10 messages / 10 min) via trigger.
 - Tout contenu affiché est inséré en `textContent` (pas d'`innerHTML` sur des données utilisateur).
-- Aucun cookie de suivi. La carte Google Maps ne se charge qu'après clic. Google Fonts est chargé depuis les serveurs de Google (mentionné dans la politique de confidentialité).
+- Aucun cookie de suivi. La carte Google Maps ne se charge qu'après clic. Les polices sont hébergées sur le site lui-même.

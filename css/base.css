@@ -1,67 +1,70 @@
 /* =========================================================
    Prophone Béziers — design tokens, reset, typography
-   Direction "Voltage": near-black ink, one vivid neon-red accent,
-   glass cards, wide display type, motion that respects user settings.
+   Direction "Smartfun": warm cream paper, deep navy headings, friendly orange
+   buttons, soft rounded cards, motion that respects user settings.
    ========================================================= */
-:root {
-  color-scheme: dark light;
+/* Self-hosted fonts (Baloo 2 for headings, Inter for text): no request to Google. */
+@font-face { font-family: 'Baloo 2'; font-style: normal; font-weight: 400 800; font-display: swap; src: url('../assets/fonts/baloo2-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Baloo 2'; font-style: normal; font-weight: 400 800; font-display: swap; src: url('../assets/fonts/baloo2-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('../assets/fonts/inter-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('../assets/fonts/inter-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
 
-  /* Colour tokens (dark is the signature look) */
-  --bg: #0a0708;
-  --bg-2: #130b0d;
-  --surface: rgba(255, 255, 255, 0.045);
-  --surface-2: rgba(255, 255, 255, 0.08);
-  --border: rgba(255, 255, 255, 0.11);
-  --text: #f3f5fa;
-  --muted: #a9aebf;
-  --accent: #e8192c;          /* fills */
-  --accent-ink: #ffffff;      /* text on accent fills */
-  --accent-text: #ff5a64;     /* accent used as text colour */
-  --accent-2: #b3001b;        /* secondary glow */
-  --ok: #4ade80;
-  --warn: #fbbf24;
-  --danger: #ff6b6b;
-  --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.7);
-  --glow: 0 0 0 1px rgba(232, 25, 44, 0.45), 0 10px 40px -10px rgba(232, 25, 44, 0.6);
+:root {
+  color-scheme: light;
+
+  /* Smartfun-style palette: cream paper, deep navy, friendly orange */
+  --navy: #1d0b0f;
+  --blue-800: #3a0e16;
+  --blue-700: #c4101f;
+  --blue-600: #e8192c;
+  --blue-100: #fde3e6;
+  --blue-50: #fff1f2;
+  --orange: #e8192c;
+  --orange-dark: #c4101f;
+  --orange-50: #fdecee;
+  --green: #74c043;
+  --green-dark: #3f8a1c;
+  --green-50: #eef8e8;
+  --gold: #f5a623;
+  --brand: #e8192c;            /* logo tile (bright red) */
+
+  --bg: #f8f5ee;               /* page (cream) */
+  --bg-2: #ffffff;             /* alternate sections (white) */
+  --surface: #ffffff;
+  --surface-2: #fff1f2;
+  --border: #e5e7f0;
+  --text: #10142e;
+  --muted: #5a6078;
+  --accent: #e8192c;           /* fills: buttons, badges */
+  --accent-ink: #ffffff;       /* text on accent fills */
+  --accent-text: #c4101f;      /* accent used as text colour (AA on cream/white) */
+  --accent-2: #c4101f;
+  --ok: #3f8a1c;
+  --warn: #92600a;
+  --danger: #c0392b;
+  --shadow: 0 22px 60px rgba(60, 10, 18, 0.1);
+  --shadow-sm: 0 8px 24px rgba(60, 10, 18, 0.07);
+  --glow: 0 10px 26px rgba(232, 25, 44, 0.28);
 
   /* Type */
-  --font-display: 'Unbounded', 'Segoe UI', system-ui, sans-serif;
-  --font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Baloo 2', 'Trebuchet MS', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
   --fs-xs: clamp(0.78rem, 0.76rem + 0.1vw, 0.84rem);
   --fs-sm: clamp(0.88rem, 0.86rem + 0.1vw, 0.94rem);
-  --fs-base: clamp(1rem, 0.97rem + 0.15vw, 1.08rem);
-  --fs-lg: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
-  --fs-h3: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
-  --fs-h2: clamp(1.7rem, 1.2rem + 2.4vw, 3rem);
-  --fs-h1: clamp(2.2rem, 1.3rem + 4.6vw, 4.8rem);
+  --fs-base: clamp(1rem, 0.97rem + 0.1vw, 1.04rem);
+  --fs-lg: clamp(1.1rem, 1.04rem + 0.4vw, 1.3rem);
+  --fs-h3: clamp(1.25rem, 1.12rem + 0.5vw, 1.5rem);
+  --fs-h2: clamp(2rem, 1.4rem + 2.2vw, 2.95rem);
+  --fs-h1: clamp(2.7rem, 1.6rem + 4.4vw, 4.4rem);
 
   /* Layout */
   --gutter: clamp(1rem, 4vw, 2rem);
   --maxw: 1180px;
-  --radius: 20px;
-  --radius-sm: 12px;
-  --space: clamp(3.5rem, 8vw, 7rem);
+  --radius: 22px;
+  --radius-sm: 14px;
+  --space: clamp(3.5rem, 7vw, 5.5rem);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --header-h: 68px;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: #faf5f5;
-    --bg-2: #f1e8e8;
-    --surface: rgba(255, 255, 255, 0.75);
-    --surface-2: rgba(255, 255, 255, 0.95);
-    --border: rgba(10, 12, 20, 0.12);
-    --text: #0b0d12;
-    --muted: #474c5b;
-    --accent-text: #c4101f;
-    --accent-2: #ff4d5e;
-    --ok: #15803d;
-    --warn: #92600a;
-    --danger: #b42318;
-    --shadow: 0 20px 50px -25px rgba(20, 24, 40, 0.35);
-    --glow: 0 0 0 1px rgba(196, 16, 31, 0.35), 0 10px 30px -12px rgba(196, 16, 31, 0.5);
-  }
+  --header-h: 78px;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -71,7 +74,7 @@ body {
   min-height: 100vh;
   font-family: var(--font-body);
   font-size: var(--fs-base);
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
@@ -82,7 +85,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 a { color: var(--accent-text); text-underline-offset: 3px; }
 a:hover { text-decoration-thickness: 2px; }
 p { margin: 0 0 1em; }
-h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.12; margin: 0 0 0.6em; letter-spacing: -0.02em; font-weight: 700; }
+h1, h2, h3, h4 { font-family: var(--font-display); line-height: 1.08; margin: 0 0 0.6em; letter-spacing: -0.02em; font-weight: 700; color: var(--navy); }
 h1 { font-size: var(--fs-h1); }
 h2 { font-size: var(--fs-h2); }
 h3 { font-size: var(--fs-h3); letter-spacing: -0.01em; }

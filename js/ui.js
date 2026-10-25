@@ -79,6 +79,10 @@ export function initReveal() {
 
 /** Mobile menu toggle. */
 export function initNav() {
+  const header = document.querySelector('.site-header');
+  const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
   const btn = document.querySelector('.nav-toggle');
   const nav = document.getElementById('site-nav');
   if (!btn || !nav) return;

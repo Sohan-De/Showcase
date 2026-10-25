@@ -7,7 +7,7 @@
 <meta name="description" content="Réparation de téléphone à Béziers : écran, batterie, connecteur de charge. Diagnostic gratuit, réparation rapide et garantie. 4,8/5 sur Google. 11 av. Maréchal Foch.">
 <meta name="robots" content="index,follow">
 <link rel="canonical" href="https://www.prophone-beziers.fr/">
-<meta name="theme-color" content="#0a0708">
+<meta name="theme-color" content="#1d0b0f">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Prophone Béziers">
 <meta property="og:locale" content="fr_FR">
@@ -21,11 +21,9 @@
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Unbounded:wght@500;700&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Unbounded:wght@500;700&display=swap">
 <link rel="preload" as="image" href="assets/img/interior-front-1200.webp" imagesrcset="assets/img/interior-front-640.webp 640w, assets/img/interior-front-1200.webp 1200w" imagesizes="(min-width: 900px) 400px, 80vw" fetchpriority="high">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/baloo2-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/inter-latin.woff2" crossorigin>
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/components.css">
 <link rel="stylesheet" href="css/pages.css">
@@ -33,9 +31,10 @@
 </head>
 <body data-page="home">
 <a class="skip-link" href="#main" data-i18n="skip">Aller au contenu</a>
+<div class="topbar"><div class="container topbar__inner"><div class="topbar__group"><span class="topbar__item"><span class="topbar__star"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span><strong data-i18n="hero.rating">4,8 / 5 · 267 avis Google</strong></span><span class="topbar__item status" data-status data-open="false"><span>Horaires…</span></span></div><div class="topbar__group topbar__right"><a class="topbar__item" href="https://www.google.com/maps/dir/?api=1&amp;destination=Prophone%20B%C3%A9ziers%2011%20Av.%20Mar%C3%A9chal%20Foch%2034500%20B%C3%A9ziers" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg><span>11 av. Maréchal Foch, Béziers</span></a><a class="topbar__item" href="tel:+33774000074" data-phone-link><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span data-phone-text>+33 7 74 00 00 74</span></a></div></div></div>
 <header class="site-header">
   <div class="container">
-    <a class="brand" href="index.html" aria-label="Prophone Béziers — retour à l’accueil" data-i18n-attr="aria-label:brand.home"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect width="48" height="48" rx="13" style="fill:var(--accent)"/><rect x="15" y="8" width="18" height="32" rx="4.5" fill="none" stroke="#ffffff" stroke-width="3"/><path d="M25.5 14 19 25h5.5L22.5 34 29 22.500h-5.500z" fill="#ffffff"/></svg><span class="brand__name">Prophone<small>Béziers</small></span></a>
+    <a class="brand" href="index.html" aria-label="Prophone Béziers — retour à l’accueil" data-i18n-attr="aria-label:brand.home"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect width="48" height="48" rx="13" style="fill:var(--brand)"/><rect x="15" y="8" width="18" height="32" rx="4.5" fill="none" stroke="#ffffff" stroke-width="3"/><path d="M25.5 14 19 25h5.5L22.5 34 29 22.500h-5.500z" fill="#ffffff"/></svg><span class="brand__name">Prophone<small>Béziers</small></span></a>
     <nav class="nav" id="site-nav" aria-label="Navigation principale" data-i18n-attr="aria-label:nav.main">
       <ul class="nav__list"><li><a href="index.html" aria-current="page" data-i18n="nav.home">Accueil</a></li><li><a href="services.html" data-i18n="nav.services">Services</a></li><li><a href="prices.html" data-i18n="nav.prices">Tarifs</a></li><li><a href="contact.html" data-i18n="nav.contact">Contact</a></li></ul>
       <a class="btn btn--primary btn--sm" href="tel:+33774000074" data-phone-link><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span data-i18n="nav.call">Appeler</span></a>
@@ -60,7 +59,6 @@
       <p class="lead" data-i18n="hero.lead">Écran cassé, batterie à plat, connecteur de charge capricieux ? Prophone répare votre smartphone à Béziers : vite, au juste prix, et avec le sourire.</p>
       <div class="hero__cta">
         <a class="btn btn--primary btn--lg" href="tel:+33774000074" data-phone-link><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span data-i18n="hero.call">Appeler</span></a>
-        <a class="btn btn--wa btn--lg" href="https://wa.me/33774000074" data-wa rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 21l1.7-5A9 9 0 1 1 8 19.3L3 21z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1.2-1.4-2-1-.8.8c-1-.4-1.8-1.2-2.2-2.2l.8-.8-1-2L9 9.5z"/></svg><span data-i18n="hero.wa">WhatsApp</span></a>
         <a class="btn btn--lg" href="prices.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.5"/></svg><span data-i18n="hero.prices">Voir les tarifs</span></a>
         <a class="btn btn--ghost btn--lg" href="https://www.google.com/maps/dir/?api=1&destination=Prophone%20B%C3%A9ziers%2011%20Av.%20Mar%C3%A9chal%20Foch%2034500%20B%C3%A9ziers" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3 11 19-9-9 19-2-8-8-2z"/></svg><span data-i18n="hero.directions">Itinéraire</span></a>
       </div>
@@ -150,7 +148,7 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="brand" href="index.html" aria-label="Prophone Béziers — retour à l’accueil" data-i18n-attr="aria-label:brand.home"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect width="48" height="48" rx="13" style="fill:var(--accent)"/><rect x="15" y="8" width="18" height="32" rx="4.5" fill="none" stroke="#ffffff" stroke-width="3"/><path d="M25.5 14 19 25h5.5L22.5 34 29 22.500h-5.500z" fill="#ffffff"/></svg><span class="brand__name">Prophone<small>Béziers</small></span></a>
+        <a class="brand" href="index.html" aria-label="Prophone Béziers — retour à l’accueil" data-i18n-attr="aria-label:brand.home"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect width="48" height="48" rx="13" style="fill:var(--brand)"/><rect x="15" y="8" width="18" height="32" rx="4.5" fill="none" stroke="#ffffff" stroke-width="3"/><path d="M25.5 14 19 25h5.5L22.5 34 29 22.500h-5.500z" fill="#ffffff"/></svg><span class="brand__name">Prophone<small>Béziers</small></span></a>
         <p data-i18n="foot.tag">Réparation de smartphones à Béziers. Rapide, honnête, garantie.</p>
         <p class="rating"><span class="stars" role="img" aria-label="5/5"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></span> <strong data-i18n="hero.rating">4,8 / 5 · 267 avis Google</strong></p>
         <div class="footer-actions">
