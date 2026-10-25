@@ -1,18 +1,17 @@
 /** Admin shell: auth guard, tab routing (hash), lazy panel init, logout. */
 import { requireAdmin, logout } from './guard.js';
 import { initPrices } from './prices.js';
-import { initCatalog } from './catalog.js';
-import { initTools } from './bulk.js';
 import { initSettings } from './settings.js';
 import { initMessages, refreshBadge } from './messages.js';
 
 const PANELS = {
-  prix: initPrices,
-  catalogue: initCatalog,
-  outils: initTools,
+  tarifs: initPrices,
   boutique: initSettings,
   messages: initMessages,
 };
+
+// old bookmarks (#prix, #catalogue, #outils) now lead to the merged page
+const ALIAS = { prix: 'tarifs', catalogue: 'tarifs', outils: 'tarifs' };
 
 const auth = await requireAdmin();
 if (auth) {
@@ -22,7 +21,8 @@ if (auth) {
 
   const loaded = new Set();
   const show = async () => {
-    const key = PANELS[location.hash.slice(1)] ? location.hash.slice(1) : 'prix';
+    const h = location.hash.slice(1);
+    const key = PANELS[ALIAS[h] || h] ? (ALIAS[h] || h) : 'tarifs';
     document.querySelectorAll('[data-panel]').forEach((p) => { p.hidden = p.dataset.panel !== key; });
     document.querySelectorAll('.tabbar a').forEach((a) => a.setAttribute('aria-current', String(a.getAttribute('href') === `#${key}`)));
     if (key === 'messages') loaded.delete(key); // always refresh

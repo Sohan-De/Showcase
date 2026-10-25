@@ -52,19 +52,14 @@ Ouvrez http://localhost:3000 (site) et http://localhost:3000/admin/login.html (a
 
 ## 4. Guide du propriétaire (français)
 
-**Se connecter** : allez sur `votresite.fr/admin/login.html`, saisissez votre e-mail et votre mot de passe. Sur téléphone, les boutons du bas changent de section.
+**Se connecter** : allez sur `votresite.fr/admin/login.html`, saisissez votre e-mail et votre mot de passe. Trois onglets : **Tarifs**, **Boutique** (horaires, coordonnées, promo) et **Messages**.
 
-**Modifier un prix**
-1. Onglet **Prix**. Choisissez la **marque**, puis le **modèle**.
-2. Pour chaque réparation, changez le **prix** (€) et la **durée** (minutes). Laissez le prix **vide** pour afficher « Sur devis ».
-3. Le curseur **Affiché sur le site** cache ou montre la réparation pour ce modèle.
-4. Appuyez sur **Enregistrer** (barre en bas). Un message vert confirme. La date « Modifié le… » se met à jour.
+**Page Tarifs (tout sur une seule page)** : onglet **Tarifs**.
+1. **Marque** : cliquez sur une marque (ou « Toutes »). Boutons : *+ Ajouter une marque*, *Renommer*, *Masquer sur le site*, *Supprimer la marque*.
+2. **Modèle** : cliquez sur un modèle. Boutons : *+ Ajouter un modèle*, *Renommer / image*, *Masquer*, *Supprimer*.
+3. **Réparations et prix** : modifiez le **prix** (€) et la **durée** (minutes). Prix **vide** = « Sur devis ». Le curseur **Affiché** montre ou cache la réparation pour ce modèle. *+ Add a repair to this model* ajoute une réparation à CE modèle uniquement (existante ou nouvelle) ; sur chaque ligne : *Edit type*, *Remove from this model*, *Delete everywhere*. Terminez par **Enregistrer** (barre en bas).
 
-**Ajouter / renommer / cacher / supprimer** : onglet **Catalogue** (Marques, Modèles, Réparations). *Visible sur le site* décoche = caché sans rien perdre. *Supprimer* demande confirmation et efface aussi les prix liés.
-
-**Changer plusieurs prix d'un coup** : onglet **Outils** → choisissez la réparation (et la marque), saisissez `10` pour +10 % (ou `-5` pour −5), *Voir l'aperçu*, puis *Appliquer*.
-
-**Excel / CSV** : *Télécharger le fichier CSV*, modifiez les prix dans Excel, puis importez-le. Ne changez pas l'orthographe des noms. Les marques/modèles nouveaux sont créés si la case est cochée.
+*Masquer* cache l'élément sur le site sans rien perdre ; *Supprimer* demande confirmation et efface aussi les prix liés.
 
 **Horaires, téléphone, bandeau promo** : onglet **Boutique**. Le bandeau promo s'affiche en haut de toutes les pages du site.
 
