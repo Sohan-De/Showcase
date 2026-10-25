@@ -6,7 +6,7 @@ const msg = document.getElementById('login-msg');
 const btn = form.querySelector('button[type=submit]');
 const show = (text) => { msg.textContent = text; msg.hidden = !text; };
 
-if (new URLSearchParams(location.search).has('denied')) show('This account does not have admin rights.');
+if (new URLSearchParams(location.search).has('denied')) show('Ce compte n’a pas les droits d’administration.');
 
 // Already signed in? Go straight to the dashboard.
 getClient().then(async (db) => {
@@ -17,7 +17,7 @@ getClient().then(async (db) => {
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
   show('');
-  btn.disabled = true; btn.textContent = 'Logging in…';
+  btn.disabled = true; btn.textContent = 'Connexion…';
   try {
     const db = await getClient();
     const { error } = await db.auth.signInWithPassword({ email: form.email.value.trim(), password: form.password.value });
@@ -25,7 +25,7 @@ form.addEventListener('submit', async (e) => {
     location.replace(new URL('../../admin/index.html', import.meta.url).href);
   } catch (err) {
     console.error(err);
-    show(/invalid login/i.test(err.message) ? 'Incorrect email or password.' : 'Could not log in. Check your internet connection and try again.');
-    btn.disabled = false; btn.textContent = 'Log in';
+    show(/invalid login/i.test(err.message) ? 'E-mail ou mot de passe incorrect.' : 'Connexion impossible. Vérifiez votre connexion internet et réessayez.');
+    btn.disabled = false; btn.textContent = 'Se connecter';
   }
 });

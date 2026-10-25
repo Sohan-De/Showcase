@@ -31,7 +31,7 @@ export function toast(text, type = 'success', ms = 4200) {
 }
 
 /** Confirmation dialog (promise<boolean>). Uses the native <dialog> element. */
-export function confirmDialog({ title, text, confirmLabel = 'Confirm', danger = false }) {
+export function confirmDialog({ title, text, confirmLabel = 'Confirmer', danger = false }) {
   return new Promise((resolve) => {
     let done = false;
     // Resolve straight from the click (not only from the async 'close' event); Esc still counts as "no".
@@ -40,7 +40,7 @@ export function confirmDialog({ title, text, confirmLabel = 'Confirm', danger = 
       el('h2', { id: 'dlg-title', text: title }),
       el('p', { text }),
       el('div', { class: 'dialog__actions' },
-        el('button', { class: 'btn btn--lg', type: 'button', text: 'Cancel', onclick: () => finish(false) }),
+        el('button', { class: 'btn btn--lg', type: 'button', text: 'Annuler', onclick: () => finish(false) }),
         el('button', { class: `btn btn--lg ${danger ? 'btn--danger-solid' : 'btn--primary'}`, type: 'button', text: confirmLabel, onclick: () => finish(true) })));
     dlg.addEventListener('close', () => finish(false));
     document.body.append(dlg);
@@ -52,7 +52,7 @@ export function confirmDialog({ title, text, confirmLabel = 'Confirm', danger = 
  * Small form in a dialog (add / rename). fields: [{ key, label, value, type: text|url|select, options, required, max, hint }]
  * Resolves with { key: value } or null when cancelled.
  */
-export function formDialog({ title, text, fields, submitLabel = 'Save' }) {
+export function formDialog({ title, text, fields, submitLabel = 'Enregistrer' }) {
   return new Promise((resolve) => {
     let done = false;
     const finish = (v) => { if (done) return; done = true; resolve(v); dlg.close(); dlg.remove(); };
@@ -63,7 +63,7 @@ export function formDialog({ title, text, fields, submitLabel = 'Save' }) {
         let removed = false;
         const fileIn = el('input', { type: 'file', accept: 'image/jpeg,image/png,image/webp', class: 'input input--lg', id: `f-${f.key}` });
         const prev = el('img', { class: 'img-preview', alt: '', hidden: !f.value, ...(f.value ? { src: f.value } : {}) });
-        const rm = el('button', { class: 'link-btn link-btn--danger', type: 'button', text: 'Remove image', hidden: !f.value, onclick: () => { removed = true; prev.hidden = true; rm.hidden = true; fileIn.value = ''; } });
+        const rm = el('button', { class: 'link-btn link-btn--danger', type: 'button', text: 'Supprimer l’image', hidden: !f.value, onclick: () => { removed = true; prev.hidden = true; rm.hidden = true; fileIn.value = ''; } });
         fileIn.addEventListener('change', () => { const file = fileIn.files[0]; if (file) { removed = false; prev.src = URL.createObjectURL(file); prev.hidden = false; rm.hidden = false; } });
         // result: File = new picture, '' = removed, undefined = unchanged
         inputs[f.key] = { image: true, result: () => fileIn.files[0] || (removed ? '' : undefined), focus() {}, setAttribute() {} };
@@ -92,10 +92,10 @@ export function formDialog({ title, text, fields, submitLabel = 'Save' }) {
         if (inputs[f.key].image) { out[f.key] = inputs[f.key].result(); continue; }
         const v = inputs[f.key].value.trim();
         if (f.required && !v) { inputs[f.key].setAttribute('aria-invalid', 'true'); inputs[f.key].focus(); return; }
-        if (f.type === 'url' && v && !/^https?:\/\//i.test(v)) { toast('The link must start with https://', 'error'); inputs[f.key].focus(); return; }
+        if (f.type === 'url' && v && !/^https?:\/\//i.test(v)) { toast('Le lien doit commencer par https://', 'error'); inputs[f.key].focus(); return; }
         if (f.type === 'number') {
           const n = v === '' ? null : Number(v);
-          if (n !== null && (Number.isNaN(n) || n < 0)) { toast(`${f.label}: enter a valid number.`, 'error'); inputs[f.key].focus(); return; }
+          if (n !== null && (Number.isNaN(n) || n < 0)) { toast(`${f.label} : saisissez un nombre valide.`, 'error'); inputs[f.key].focus(); return; }
           out[f.key] = n; continue;
         }
         out[f.key] = f.type === 'url' ? (v || null) : v;
@@ -104,7 +104,7 @@ export function formDialog({ title, text, fields, submitLabel = 'Save' }) {
     } },
       el('h2', { id: 'dlg-title', text: title }), text ? el('p', { class: 'muted', text }) : null, ...nodes,
       el('div', { class: 'dialog__actions' },
-        el('button', { class: 'btn btn--lg', type: 'button', text: 'Cancel', onclick: () => finish(null) }),
+        el('button', { class: 'btn btn--lg', type: 'button', text: 'Annuler', onclick: () => finish(null) }),
         el('button', { class: 'btn btn--lg btn--primary', type: 'submit', text: submitLabel })));
     const dlg = el('dialog', { class: 'dialog', 'aria-labelledby': 'dlg-title' }, form);
     dlg.addEventListener('close', () => finish(null));
@@ -117,7 +117,7 @@ export function formDialog({ title, text, fields, submitLabel = 'Save' }) {
 /** Run an async action on a button with a busy state + toast on failure. */
 export async function withBusy(btn, fn, okMessage) {
   const label = btn.textContent;
-  btn.disabled = true; btn.textContent = 'One moment…';
+  btn.disabled = true; btn.textContent = 'Un instant…';
   try {
     const result = await fn();
     if (okMessage) toast(okMessage, 'success');
@@ -133,13 +133,13 @@ export async function withBusy(btn, fn, okMessage) {
 
 export function friendlyError(err) {
   const msg = String(err?.message || err);
-  if (/row-level security|permission denied|JWT/i.test(msg)) return 'Action refused: log in again, or check that your account is an administrator.';
-  if (/duplicate key|unique/i.test(msg)) return 'This name already exists.';
-  if (/Failed to fetch|NetworkError/i.test(msg)) return 'No internet connection. Please try again.';
-  return `Something went wrong: ${msg}`;
+  if (/row-level security|permission denied|JWT/i.test(msg)) return 'Action refusée : reconnectez-vous ou vérifiez que votre compte est bien administrateur.';
+  if (/duplicate key|unique/i.test(msg)) return 'Ce nom existe déjà.';
+  if (/Failed to fetch|NetworkError/i.test(msg)) return 'Pas de connexion à internet. Réessayez.';
+  return `Une erreur est survenue : ${msg}`;
 }
 
-export const fmtDate = (iso) => (iso ? new Date(iso).toLocaleString('en-GB', { dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris' }) : '—');
+export const fmtDate = (iso) => (iso ? new Date(iso).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short', timeZone: 'Europe/Paris' }) : '—');
 export const slug = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 
 /** A labelled field wrapper used across admin forms. */

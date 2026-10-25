@@ -57,7 +57,7 @@ Ouvrez http://localhost:3000 (site) et http://localhost:3000/admin/login.html (a
 **Page Tarifs (tout sur une seule page)** : onglet **Tarifs**.
 1. **Marque** : cliquez sur une marque (ou « Toutes »). Boutons : *+ Ajouter une marque*, *Renommer*, *Masquer sur le site*, *Supprimer la marque*.
 2. **Modèle** : cliquez sur un modèle. Boutons : *+ Ajouter un modèle*, *Renommer / image*, *Masquer*, *Supprimer*.
-3. **Réparations et prix** : modifiez le **prix** (€) et la **durée** (minutes). Prix **vide** = « Sur devis ». Le curseur **Affiché** montre ou cache la réparation pour ce modèle. *+ Add a repair to this model* ajoute une réparation à CE modèle uniquement (existante ou nouvelle) ; sur chaque ligne : *Edit type*, *Remove from this model*, *Delete everywhere*. Terminez par **Enregistrer** (barre en bas).
+3. **Réparations et prix** : modifiez le **prix** (€) et la **durée** (minutes). Prix **vide** = « Sur devis ». Le curseur **Affiché** montre ou cache la réparation pour ce modèle. *+ Ajouter une réparation à ce modèle* ajoute une réparation à CE modèle uniquement (existante ou nouvelle) ; sur chaque ligne : menu ⋯ : *Modifier le type de réparation*, *Retirer de ce modèle*, *Supprimer partout*. Terminez par **Enregistrer** (barre en bas).
 
 *Masquer* cache l'élément sur le site sans rien perdre ; *Supprimer* demande confirmation et efface aussi les prix liés.
 

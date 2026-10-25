@@ -8,24 +8,24 @@ export async function refreshBadge() {
 }
 
 export async function initMessages(container) {
-  container.replaceChildren(el('p', { class: 'muted', text: 'Loading…' }));
+  container.replaceChildren(el('p', { class: 'muted', text: 'Chargement…' }));
   async function render() {
     let rows;
-    try { rows = await listMessages(); } catch (e) { console.error(e); container.replaceChildren(el('p', { class: 'msg msg--error', text: 'Loading error.' })); return; }
+    try { rows = await listMessages(); } catch (e) { console.error(e); container.replaceChildren(el('p', { class: 'msg msg--error', text: 'Erreur de chargement.' })); return; }
     refreshBadge();
-    if (!rows.length) { container.replaceChildren(el('p', { class: 'msg', text: 'No messages yet.' })); return; }
+    if (!rows.length) { container.replaceChildren(el('p', { class: 'msg', text: 'Aucun message pour le moment.' })); return; }
     container.replaceChildren(...rows.map((m) => el('article', { class: `card msg-card${m.is_read ? '' : ' is-unread'}` },
       el('header', {}, el('strong', { text: m.name }), el('span', { class: 'muted', text: ` · ${fmtDate(m.created_at)}${m.lang ? ' · ' + m.lang.toUpperCase() : ''}` })),
-      m.model ? el('p', { class: 'tag', text: `Phone: ${m.model}` }) : null,
+      m.model ? el('p', { class: 'tag', text: `Téléphone : ${m.model}` }) : null,
       el('p', { class: 'msg-body', text: m.message }), // text node: never parsed as HTML
       el('div', { class: 'btn-row' },
-        m.phone ? el('a', { class: 'btn btn--primary', href: `tel:${m.phone.replace(/[^\d+]/g, '')}`, text: `Call ${m.phone}` }) : null,
-        m.email ? el('a', { class: 'btn', href: `mailto:${encodeURIComponent(m.email).replace('%40', '@')}`, text: 'Reply by email' }) : null,
-        el('button', { class: 'btn', type: 'button', text: m.is_read ? 'Mark as unread' : 'Mark as read', onclick: async () => {
-          try { await updateRow('contact_messages', m.id, { is_read: !m.is_read }); render(); } catch (e) { toast('Action failed.', 'error'); console.error(e); } } }),
-        el('button', { class: 'btn btn--danger', type: 'button', text: 'Delete', onclick: async () => {
-          if (!(await confirmDialog({ title: 'Delete this message?', text: 'This cannot be undone.', confirmLabel: 'Delete', danger: true }))) return;
-          try { await deleteRow('contact_messages', m.id); render(); } catch (e) { toast('Could not delete.', 'error'); console.error(e); } } })))));
+        m.phone ? el('a', { class: 'btn btn--primary', href: `tel:${m.phone.replace(/[^\d+]/g, '')}`, text: `Appeler ${m.phone}` }) : null,
+        m.email ? el('a', { class: 'btn', href: `mailto:${encodeURIComponent(m.email).replace('%40', '@')}`, text: 'Répondre par e-mail' }) : null,
+        el('button', { class: 'btn', type: 'button', text: m.is_read ? 'Marquer non lu' : 'Marquer comme lu', onclick: async () => {
+          try { await updateRow('contact_messages', m.id, { is_read: !m.is_read }); render(); } catch (e) { toast('Action impossible.', 'error'); console.error(e); } } }),
+        el('button', { class: 'btn btn--danger', type: 'button', text: 'Supprimer', onclick: async () => {
+          if (!(await confirmDialog({ title: 'Supprimer ce message ?', text: 'Cette action est définitive.', confirmLabel: 'Supprimer', danger: true }))) return;
+          try { await deleteRow('contact_messages', m.id); render(); } catch (e) { toast('Suppression impossible.', 'error'); console.error(e); } } })))));
   }
   render();
 }
